@@ -1,4 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
+const fs = require('fs')
+const privateKey = fs.readFileSync(".secret").toString().trim() || "01234567890123456789";
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -22,10 +24,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
     hardhat: {
       chainId: 1337
     },
-    //  mumbai: {
-    //    url: "https://rpc-mumbai.maticvigil.com",
-    //    accounts: [process.env.CONTRACT_DEPLOY_PRIVATE_KEY]
-    //  }
+     mumbai: {
+       url: "https://rpc-mumbai.maticvigil.com",
+       accounts: [privateKey]
+     }
   },
   solidity: {
     version: "0.8.4",
